@@ -54,7 +54,6 @@ jobs:
                   cp -a /opt/Gmeek/backup ${{ github.workspace }} 
                   cp /opt/Gmeek/blogBase.json ${{ github.workspace }}
               env:
-                  SPARK_LITE_ENABLE: ${{ secrets.SPARK_LITE_ENABLE }}
                   SPARK_LITE_APP_ID: ${{ secrets.SPARK_LITE_APP_ID }}
                   SPARK_LITE_API_KEY: ${{ secrets.SPARK_LITE_API_KEY }}
                   SPARK_LITE_API_SECRET: ${{ secrets.SPARK_LITE_API_SECRET }}

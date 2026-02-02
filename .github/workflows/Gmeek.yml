@@ -57,7 +57,6 @@ jobs:
                   SPARK_LITE_APP_ID: ${{ secrets.SPARK_LITE_APP_ID }}
                   SPARK_LITE_API_KEY: ${{ secrets.SPARK_LITE_API_KEY }}
                   SPARK_LITE_API_SECRET: ${{ secrets.SPARK_LITE_API_SECRET }}
-                  SPARK_LITE_API_PASSWORD: ${{ secrets.SPARK_LITE_API_PASSWORD }}
 
             - name: update html
               run: |

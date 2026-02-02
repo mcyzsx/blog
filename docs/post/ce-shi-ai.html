@@ -12,27 +12,11 @@
     </script>
 <meta name="description" content="## 涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字
 
-　　涂鹿Toolooz，在线曲线文字绘制工具，可使文字沿任意路径排列，打造独特视觉效果。为您的徽标、标题、艺术作品赋予生命力与创意。
-
-　　支持自定义画布尺寸、文本内容、字体、间距、颜色、描边等，还支持多个绘图工具和选择文本是否重复，可导出为 PNG、WebP 和 SVG 格式，免费使用，无需注册。
-
-## 网站介绍
-
-### 截图
-
-![](https://cdn.">
+　　涂鹿Toolooz，在线曲线文字绘制工具，可使文字沿任意路径排列，打造独特视觉效果。">
 <meta property="og:title" content="测试ai">
 <meta property="og:description" content="## 涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字
 
-　　涂鹿Toolooz，在线曲线文字绘制工具，可使文字沿任意路径排列，打造独特视觉效果。为您的徽标、标题、艺术作品赋予生命力与创意。
-
-　　支持自定义画布尺寸、文本内容、字体、间距、颜色、描边等，还支持多个绘图工具和选择文本是否重复，可导出为 PNG、WebP 和 SVG 格式，免费使用，无需注册。
-
-## 网站介绍
-
-### 截图
-
-![](https://cdn.">
+　　涂鹿Toolooz，在线曲线文字绘制工具，可使文字沿任意路径排列，打造独特视觉效果。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mcyzsx.github.io/blog/post/ce-shi-ai.html">
 <meta property="og:image" content="https://img.314926.xyz/h">
@@ -57,163 +41,44 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
+
+/* AI摘要样式 */
+.ai-summary {
+    border: 1px dashed var(--color-border-default);
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: var(--color-bg-secondary);
+    border-radius: 4px;
+}
+
+.ai-summary h3 {
+    margin-top: 0;
+    color: var(--color-fg-muted);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ai-summary p {
+    margin-bottom: 0;
+    color: var(--color-fg-default);
+}
+
 @media (max-width: 600px) {
     body {padding: 8px;}
     .postTitle{font-size:24px;}
-}
-
-
-/* AISummary Styles */
-.aisummary-container {
-    background: hsl(var(--muted) / 0.5);
-    border-radius: 0.75rem;
-    padding: 1rem;
-    line-height: 1.5;
-    border: 1px solid hsl(var(--border) / 0.8);
-    margin: 1.25rem 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-}
-
-.aisummary-container:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
-}
-
-@media screen and (max-width: 768px) {
-    .aisummary-container {
-        margin-top: 1.5rem;
-        padding: 0.875rem;
+    .ai-summary {
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+    .ai-summary h3 {
+        font-size: 14px;
     }
 }
 
-.aisummary-title {
-    display: flex;
-    color: hsl(var(--muted-foreground));
-    border-radius: 0.5rem;
-    align-items: center;
-    padding: 0 0.75rem;
-    cursor: default;
-    user-select: none;
-    font-family: var(--font-sans);
-}
 
-.aisummary-title-text {
-    font-weight: 600;
-    margin-left: 0.625rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-}
-
-.aisummary-explanation {
-    margin-top: 0.875rem;
-    padding: 0.75rem 1rem;
-    background: hsl(var(--background));
-    border-radius: 0.5rem;
-    border: 1px solid hsl(var(--border) / 0.6);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    display: block;
-    position: relative;
-    overflow: visible;
-    max-height: none !important;
-    will-change: contents;
-}
-
-.aisummary-explanation::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 3px;
-    background: hsl(var(--primary));
-}
-
-.aisummary-tag {
-    font-size: 0.75rem;
-    background-color: hsl(var(--primary) / 0.9);
-    color: hsl(var(--card));
-    font-weight: 600;
-    border-radius: 0.25rem;
-    margin-left: auto;
-    line-height: 1;
-    padding: 0.375rem 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.aisummary-tag:hover {
-    background: hsl(var(--primary) / 1);
-    transform: scale(1.05);
-}
-
-.aisummary-title-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.aisummary-title-icon svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    fill: hsl(var(--primary));
-}
-
-.aisummary-title-icon svg path {
-    fill: hsl(var(--primary));
-}
-
-.aisummary-disclaimer {
-    font-size: 0.75rem;
-    color: hsl(var(--muted-foreground));
-    margin-top: 0.5rem;
-    padding: 0 0.5rem;
-}
-
-.blinking-cursor {
-    background-color: hsl(var(--primary));
-    width: 0.625rem;
-    height: 1rem;
-    display: inline-block;
-    vertical-align: middle;
-    animation: blinking-cursor 0.5s infinite;
-    -webkit-animation: blinking-cursor 0.5s infinite;
-    margin-left: 0.25rem;
-    border-radius: 1px;
-}
-
-@keyframes blinking-cursor {
-    0% {
-        opacity: 1;
-    }
-    40% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    90% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-/* 可访问性：减少动态效果时关闭光标闪烁 */
-@media (prefers-reduced-motion: reduce) {
-    .blinking-cursor {
-        animation: none;
-        -webkit-animation: none;
-    }
-}
 </style>
+
+
 
 
 <body>
@@ -242,7 +107,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-
 <div class="markdown-body" id="postBody"><h2>涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字</h2>
 <p>　　涂鹿Toolooz，在线曲线文字绘制工具，可使文字沿任意路径排列，打造独特视觉效果。为您的徽标、标题、艺术作品赋予生命力与创意。</p>
 <p>　　支持自定义画布尺寸、文本内容、字体、间距、颜色、描边等，还支持多个绘图工具和选择文本是否重复，可导出为 PNG、WebP 和 SVG 格式，免费使用，无需注册。</p>
@@ -324,7 +188,7 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message,'https://utteranc.es');
 }
 if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
-console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+console.log("\n %c Gmeek main https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
 </script>
 
 <script>

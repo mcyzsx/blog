@@ -124,6 +124,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 </div>
     <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://mcyzsx.github.io/blog">ZSX的博客</a></div>
+<div id="voyagerDistance" style="text-align: center; font-size: small; margin: 5px 0;"></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
@@ -132,12 +133,66 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 var now=new Date();
 document.getElementById("copyrightYear").innerHTML=now.getFullYear();
 
-if("02/02/2026"!=""){
-    var startSite=new Date("02/02/2026");
-    var diff=now.getTime()-startSite.getTime();
-    var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+if("2026-02-02T12:00:00"!=""){
+    // 创建包含时区信息的开始时间对象
+    var startSite=new Date("2026-02-02T12:00:00");
+    
+    // 更新运行时间的函数
+    function updateRunTime() {
+        var now=new Date();
+        // 调整为北京时间（UTC+8）
+        var beijingTime=new Date(now.getTime()+8*60*60*1000);
+        var diff=beijingTime.getTime()-startSite.getTime();
+        
+        // 计算天、时、分、秒
+        var days=Math.floor(diff/(1000*60*60*24));
+        var hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+        var minutes=Math.floor((diff%(1000*60*60))/(1000*60));
+        var seconds=Math.floor((diff%(1000*60))/1000);
+        
+        // 格式化时间字符串
+        var timeStr="网站运行"+days+"天"+hours+"小时"+minutes+"分"+seconds+"秒 • ";
+        document.getElementById("runday").innerHTML=timeStr;
+    }
+    
+    // 初始更新
+    updateRunTime();
+    
+    // 每秒更新一次
+    setInterval(updateRunTime, 1000);
 }
+
+// 旅行者一号相关信息
+(function() {
+    // 旅行者一号发射日期：1977年9月5日
+    const voyagerLaunchDate = new Date('1977-09-05T12:56:00');
+    // 旅行者一号平均速度：约17.043公里/秒
+    const voyagerSpeedKms = 17.043;
+    
+    // 更新旅行者一号距离的函数
+    function updateVoyagerDistance() {
+        var now = new Date();
+        // 调整为北京时间（UTC+8）
+        var beijingTime = new Date(now.getTime() + 8 * 60 * 60 * 1000);
+        var diff = beijingTime.getTime() - voyagerLaunchDate.getTime();
+        
+        // 计算秒数
+        var seconds = diff / 1000;
+        // 计算距离（千米）
+        var distanceKm = seconds * voyagerSpeedKms;
+        // 格式化距离，精确到千米
+        var formattedDistance = Math.round(distanceKm).toLocaleString();
+        
+        // 更新显示
+        document.getElementById('voyagerDistance').innerHTML = '旅行者一号离地球距离: ' + formattedDistance + ' 千米';
+    }
+    
+    // 初始更新
+    updateVoyagerDistance();
+    
+    // 每秒更新一次
+    setInterval(updateVoyagerDistance, 1000);
+})();
 </script></div>
     <!-- NeteaseMiniPlayer 全局播放器 -->
     <div class="netease-mini-player" 
@@ -183,8 +238,48 @@ console.log("\n %c Gmeek main https://github.com/Meekdai/Gmeek \n","padding:5px 
 <!-- NeteaseMiniPlayer JavaScript -->
 <script src="https://netease.zsx815.top/netease-mini-player-v2.js"></script>
 <script>
-// 初始化 NeteaseMiniPlayer
+// 覆盖默认API基础URL，使用备用服务器
 if (typeof NeteaseMiniPlayer !== 'undefined') {
+    // 保存原始的apiRequest方法
+    const originalApiRequest = NeteaseMiniPlayer.prototype.apiRequest;
+    // 重写apiRequest方法，使用备用API服务器
+    NeteaseMiniPlayer.prototype.apiRequest = async function(endpoint, params = {}) {
+        // 备用API服务器
+        const baseUrl = 'https://api.qqsuu.cn/api/netease';
+        const queryString = new URLSearchParams(params).toString();
+        const url = `${baseUrl}${endpoint}${queryString ? '?' + queryString : ''}`;
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.code !== 200) {
+                throw new Error(`API错误: ${data.code}`);
+            }
+            return data;
+        } catch (error) {
+            console.error('API请求失败:', error);
+            // 如果备用服务器也失败，尝试使用原始方法
+            try {
+                return await originalApiRequest.call(this, endpoint, params);
+            } catch (originalError) {
+                console.error('原始API请求也失败:', originalError);
+                // 返回模拟数据，避免播放器完全无法使用
+                return {
+                    code: 200,
+                    songs: [{
+                        id: 17606255483,
+                        name: '播放器API暂时不可用',
+                        ar: [{name: '请稍后再试'}],
+                        al: {
+                            name: 'API错误',
+                            picUrl: ''
+                        },
+                        dt: 0
+                    }]
+                };
+            }
+        }
+    };
+    // 初始化播放器
     NeteaseMiniPlayer.init();
 }
 // 解析短代码

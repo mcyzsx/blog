@@ -153,7 +153,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 
 <div style="border: 1px dashed #ccc; padding: 10px; margin-bottom: 20px;">
-    <strong>AI总结:</strong> 本文介绍了测试文章的结构和内容，包括标题、子标题和代码块。文章还提到了无序列表和有序列表的使用，以及
+    <strong>AI总结:</strong> 本文介绍了一种测试方法，包括粗体和斜体的测试、代码块的测试以及使用链接和图片进行测试。文章首先介绍了标题和子标题的使用方法，然后详细介绍了代码块的测试方法，包括无序列表和有序列表的测试。最后，文章还提供了一些测试链接
 </div>
 
 <div class="markdown-body" id="postBody"><p>测试文章</p>
@@ -472,16 +472,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const style = getComputedStyle(document.documentElement)
     // 检查是否为深色模式
     const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light'
-    // 深色模式使用天蓝色，浅色模式使用默认主题色
+    // 深色模式使用浅灰色，浅色模式使用默认主题色
     let primary
     if (colorMode === 'dark') {
-      // 天蓝色 HSL 值
-      primary = '210, 100%, 50%'
+      // 浅灰色 HSL 值，靠白一点以便在黑色背景下更显眼
+      primary = '0, 0%, 85%'
     } else {
       // 浅色模式使用主题颜色或默认值
       primary = style.getPropertyValue('--primary').trim() || '0, 60%, 50%'
     }
-    const color = `hsl(${primary} / 0.15)`
+    const color = `hsl(${primary} / 0.25)`
 
     ctx.clearRect(0, 0, width, height)
     ctx.lineWidth = 1

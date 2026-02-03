@@ -60,12 +60,19 @@ jobs:
 
             - name: update html
               run: |
+                  echo "====== 开始Git操作 ======"
                   git config --local user.email "$(jq -r ".email" config.json)"
                   git config --local user.name "${{ github.repository_owner }}"
+                  echo "Git配置完成"
+                  git status
                   git add .
+                  echo "Git add完成"
                   git commit -a -m '🎉auto update by Gmeek action' || echo "nothing to commit"
-                  git push || echo "nothing to push"
+                  echo "Git commit完成"
+                  git push --set-upstream origin main || echo "nothing to push"
+                  echo "Git push完成"
                   sleep 3
+                  echo "====== Git操作结束 ======"
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3

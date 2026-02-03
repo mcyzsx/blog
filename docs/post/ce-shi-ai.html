@@ -103,7 +103,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 
 <div style="border: 1px dashed #ccc; padding: 10px; margin-bottom: 20px;">
-    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，支持用户自定义画布尺寸、文本内容、字体等，并可导出为PNG、WebP和SVG格式。该工具提供多种预设形状供用户选择，支持交互式编辑功能，如选择、移动、缩放和旋转文字路径，以及灵活配置画布尺寸和背景色等。此外，Toolooz还提供模板库，一键应用即可开始创意设计项目。适用于创建品牌徽标、社交媒体图片、海报和宣传材料
+    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，允许用户根据自定义路径排列文字，创建独特视觉效果。该工具提供丰富的文本样式和交互式编辑功能，支持导出为PNG、WebP和SVG格式。此外，还内置多种模板库，适用于社交媒体、创意
 </div>
 
 <div class="markdown-body" id="postBody"><h2>涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字</h2>
@@ -368,16 +368,16 @@ function iFrameLoading(){
     const style = getComputedStyle(document.documentElement)
     // 检查是否为深色模式
     const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light'
-    // 深色模式使用亮灰色，浅色模式使用默认主题色
-    let primary
+    // 深色模式使用白色，浅色模式使用默认主题色
+    let color
     if (colorMode === 'dark') {
-      // 亮灰色 HSL 值，更接近白色以便在黑色背景下更显眼
-      primary = '0, 0%, 95%'
+      // 直接使用RGB颜色格式，设置为接近白色的颜色，增加透明度
+      color = 'rgba(255, 255, 255, 0.6)'
     } else {
       // 浅色模式使用主题颜色或默认值
-      primary = style.getPropertyValue('--primary').trim() || '0, 60%, 50%'
+      const primary = style.getPropertyValue('--primary').trim() || '0, 60%, 50%'
+      color = `hsl(${primary} / 0.3)`
     }
-    const color = `hsl(${primary} / 0.4)`
 
     ctx.clearRect(0, 0, width, height)
     ctx.lineWidth = 1

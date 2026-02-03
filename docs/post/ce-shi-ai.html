@@ -111,8 +111,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     <a class="btn btn-invisible circle" onclick="toggleParticles()" title="切换粒子效果">
-        <svg class="octicon" width="16" height="16" >
-            <path id="particlesSwitch" fill-rule="evenodd"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" class="octicon" width="16" height="16" viewBox="0 0 8 8">
+            <path id="particlesSwitch" fill="#ea580c" fill-rule="evenodd"></path>
         </svg>
     </a>
 
@@ -121,7 +121,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 
 <div style="border: 1px dashed #ccc; padding: 10px; margin-bottom: 20px;">
-    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，允许用户根据任意路径排列文字，创建独特视觉效果。该工具提供自定义画布尺寸、文本内容、字体等选项，支持导出为PNG、WebP和SVG格式。此外，还提供多种模板库，适用于
+    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，允许用户轻松创建沿任意路径排列的精美文字。该工具支持自定义画布尺寸、文本内容、字体、间距、颜色、描边等，并支持导出为PNG、WebP和SVG格式。用户还可以选择是否重复文本，并可使用多个绘图工具进行编辑。该工具
 </div>
 
 <div class="markdown-body" id="postBody"><h2>涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字</h2>
@@ -548,14 +548,14 @@ function iFrameLoading(){
       initParticles()
       // 更新图标为关闭状态
       if (document.getElementById('particlesSwitch')) {
-        document.getElementById('particlesSwitch').setAttribute('d', IconList['moon'])
+        document.getElementById('particlesSwitch').setAttribute('d', 'M1 4c0-2 3-2 3 0S1 6 1 4m4.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4')
       }
     } else {
       // 清空画布
       particlesCtx.clearRect(0, 0, particlesSize.width, particlesSize.height)
       // 更新图标为开启状态
       if (document.getElementById('particlesSwitch')) {
-        document.getElementById('particlesSwitch').setAttribute('d', IconList['sun'])
+        document.getElementById('particlesSwitch').setAttribute('d', 'M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4')
       }
     }
   }
@@ -573,10 +573,8 @@ function iFrameLoading(){
   })
 
   // 为粒子开关按钮设置图标
-  if (typeof IconList !== 'undefined') {
-    if (document.getElementById('particlesSwitch')) {
-      document.getElementById('particlesSwitch').setAttribute('d', IconList['moon'])
-    }
+  if (document.getElementById('particlesSwitch')) {
+    document.getElementById('particlesSwitch').setAttribute('d', 'M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4')
   }
 </script>
 </html>

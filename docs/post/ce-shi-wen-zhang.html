@@ -153,7 +153,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 
 <div style="border: 1px dashed #ccc; padding: 10px; margin-bottom: 20px;">
-    <strong>AI总结:</strong> 本文介绍了一种测试文章的方法，包括粗体、斜体以及代码块的测试。同时，还提到了无序列表和有序列表的测试方法，并提供了一个链接供读者参考
+    <strong>AI总结:</strong> 本文介绍了一种测试方法，通过粗体和斜体来区分不同类型的文本。文章首先展示了如何使用`代码`块来输出“Hello, World”字符串，然后介绍了使用无序列表和有序列表进行格式化的方法。最后，提供了指向一个链接的测试图片，并指出
 </div>
 
 <div class="markdown-body" id="postBody"><p>测试文章</p>
@@ -513,6 +513,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.attributeName === 'data-color-mode') {
+        // 重新初始化canvas和size，确保动画在主题切换时正确重启
+        size.width = window.innerWidth
+        size.height = window.innerHeight
+        initCanvas(canvas, size.width, size.height)
         start()
       }
     })

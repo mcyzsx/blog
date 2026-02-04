@@ -121,7 +121,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 
 <div style="border: 1px dashed #ccc; padding: 10px; margin-bottom: 20px;">
-    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，支持自定义画布尺寸、文本内容、字体等，可创建沿任意路径排列的精美文字。该工具适用于创意设计，如品牌徽标、社交媒体图片和海报，支持导出为PNG、WebP和SVG
+    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，支持自定义画布尺寸、文本内容、字体等属性，并可导出为PNG、WebP和SVG格式。用户可通过自由绘制路径、选择预设形状、自定义文本样式等方式创建独特视觉效果的文字图案，适用于品牌徽标设计、社交媒体图片制作等多种
 </div>
 
 <div class="markdown-body" id="postBody"><h2>涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字</h2>
@@ -540,7 +540,7 @@ function iFrameLoading(){
 <!-- 粒子效果脚本 -->
 <script>
   // 粒子效果参数
-  let particlesEnabled = true
+  let particlesEnabled = True || true
   let particles = []
   let particlesCanvas = document.getElementById('particlesCanvas')
   let particlesCtx = particlesCanvas.getContext('2d')
@@ -656,7 +656,9 @@ function iFrameLoading(){
   }
 
   // 初始化粒子效果
-  initParticles()
+  if (particlesEnabled) {
+    initParticles()
+  }
 
   // 监听窗口大小变化
   window.addEventListener('resize', () => {
@@ -669,7 +671,11 @@ function iFrameLoading(){
 
   // 为粒子开关按钮设置图标
   if (document.getElementById('particlesSwitch')) {
-    document.getElementById('particlesSwitch').setAttribute('d', 'M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4')
+    if (particlesEnabled) {
+      document.getElementById('particlesSwitch').setAttribute('d', 'M1 4c0-2 3-2 3 0S1 6 1 4m4.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4')
+    } else {
+      document.getElementById('particlesSwitch').setAttribute('d', 'M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4')
+    }
   }
 </script>
 </html>

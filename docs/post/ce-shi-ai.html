@@ -119,7 +119,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 
 <div style="border: 1px dashed #ccc; padding: 10px; margin-bottom: 20px;">
-    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，允许用户轻松创建沿任意路径排列的精美文字。该工具支持自定义画布尺寸、文本内容、字体、间距、颜色、描边等，并可导出为PNG、WebP和SVG格式。此外，Toolooz还提供多种预设形状和交互式编辑功能，使用户能够精确控制每个文字路径的位置和外观。该工具适用于多种创意设计场景，如品牌徽标、社交媒体图片和海报设计。
+    <strong>AI总结:</strong> 涂鹿Toolooz是一款在线曲线文字绘制工具，允许用户轻松创建沿任意路径排列的精美文字该工具支持自定义画布尺寸、文本内容、字体、间距、颜色、描边等，并支持多个绘图工具和选择文本是否重复此外，Toolooz还提供PNG、WebP和SVG格式的导出选项，且完全免费，无需注册其特色包括自由绘制路径、丰富的文本样式、交互式编辑功能、灵活的配置选项以及多格式导出能力Toolooz适用于多种创意设计场景，如创...
 </div>
 
 <div class="markdown-body" id="postBody"><h2>涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字</h2>
@@ -593,7 +593,7 @@ function iFrameLoading(){
   }
 
   // 切换粒子效果
-  function toggleParticles() {
+  window.toggleParticles = function() {
     particlesEnabled = !particlesEnabled;
     if (particlesEnabled) {
       initParticles();
@@ -611,24 +611,24 @@ function iFrameLoading(){
         document.getElementById('particlesSwitch').setAttribute('d', 'M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4');
       }
     }
-  }
+  };
 
-  // 页面加载完成后初始化粒子效果
-  document.addEventListener('DOMContentLoaded', function() {
-    initParticleVariables();
+  // 初始化粒子效果变量
+  initParticleVariables();
+  
+  // 初始化粒子效果（根据配置决定是否启用）
+  if (particlesEnabled) {
+    initParticles();
+  }
+  
+  // 为粒子开关按钮设置图标
+  if (document.getElementById('particlesSwitch')) {
     if (particlesEnabled) {
-      initParticles();
+      document.getElementById('particlesSwitch').setAttribute('d', 'M1 4c0-2 3-2 3 0S1 6 1 4m4.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4');
+    } else {
+      document.getElementById('particlesSwitch').setAttribute('d', 'M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4');
     }
-    
-    // 为粒子开关按钮设置图标
-    if (document.getElementById('particlesSwitch')) {
-      if (particlesEnabled) {
-        document.getElementById('particlesSwitch').setAttribute('d', 'M1 4c0-2 3-2 3 0S1 6 1 4m4.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4');
-      } else {
-        document.getElementById('particlesSwitch').setAttribute('d', 'M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4');
-      }
-    }
-  });
+  }
 
   // 监听窗口大小变化
   window.addEventListener('resize', () => {

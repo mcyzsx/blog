@@ -108,8 +108,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
             <path id="themeSwitch" fill-rule="evenodd"></path>
         </svg>
     </a>
-    <a class="btn btn-invisible circle" onclick="toggleParticles()" title="切换粒子效果">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 8 8">
+    <a class="btn btn-invisible circle" onclick="toggleParticles()" title="切换粒子效果" style="position: relative; top: 2px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 8 8" style="display: block;">
             <path id="particlesSwitch" fill="#ea580c" d="M4 4c0-2 3-2 3 0S4 6 4 4m1.5 2c3 0 3-4 0-4h-3c-3 0-3 4 0 4"></path>
         </svg>
     </a>
@@ -297,10 +297,9 @@ function iFrameLoading(){
   const r90 = Math.PI / 2;
   const r15 = Math.PI / 12;
 
-  // 分枝参数 - 优化后的值，减少杂乱感
-  const MIN_BRANCH = 15;        // 减少初始分支数量（原30）
-  const MAX_DEPTH = 80;         // 新增：最大深度限制，防止过度生长
-  const len = 5;                // 略微减少分枝长度（原6）
+  // 分枝参数 - 恢复原始值
+  const MIN_BRANCH = 30;        // 原始值
+  const len = 6;                // 原始值
 
   // 获取中间随机数
   const randomMiddle = () => Math.random() * 0.6 + 0.2;
@@ -359,9 +358,6 @@ function iFrameLoading(){
 
   // 分步生长函数
   const step = (x, y, rad, counter = { value: 0 }) => {
-    // 达到最大深度时停止生长
-    if (counter.value >= MAX_DEPTH) return;
-
     const length = Math.random() * len;
     counter.value += 1;
 
@@ -377,15 +373,7 @@ function iFrameLoading(){
 
     if (nx < -100 || nx > size.width + 100 || ny < -100 || ny > size.height + 100) return;
 
-    // 调整分支概率：前期高概率，后期逐渐降低
-    let rate;
-    if (counter.value <= MIN_BRANCH) {
-      rate = 0.7;  // 前期分支概率降低（原0.8）
-    } else if (counter.value <= MIN_BRANCH * 2) {
-      rate = 0.4;  // 中期分支概率
-    } else {
-      rate = 0.25; // 后期分支概率降低（原0.5）
-    }
+    const rate = counter.value <= MIN_BRANCH ? 0.8 : 0.5;
 
     if (Math.random() < rate) steps.push(() => step(nx, ny, rad1, counter));
     if (Math.random() < rate) steps.push(() => step(nx, ny, rad2, counter));
@@ -435,17 +423,15 @@ function iFrameLoading(){
     steps = [];
 
     // 添加初始步骤（从四个边界向中心生长）
-    // 减少初始生长点数量，让效果更简洁
     steps = [
       () => step(randomMiddle() * size.width, -5, r90),
-      () => step(randomMiddle() * size.width, size.height + 5, -r90)
+      () => step(randomMiddle() * size.width, size.height + 5, -r90),
+      () => step(-5, randomMiddle() * size.height, 0),
+      () => step(size.width + 5, randomMiddle() * size.height, r180)
     ];
 
-    // 大屏幕才添加左右两侧的生长点
-    if (size.width >= 768) {
-      steps.push(() => step(-5, randomMiddle() * size.height, 0));
-      steps.push(() => step(size.width + 5, randomMiddle() * size.height, r180));
-    }
+    // 如果屏幕宽度较小，减少初始步骤
+    if (size.width < 500) steps = steps.slice(0, 2);
 
     // 开始动画
     requestAnimationFrame(frame);
